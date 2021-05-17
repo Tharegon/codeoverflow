@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @NoArgsConstructor
@@ -18,6 +19,7 @@ import javax.persistence.Id;
 public class Question {
 
     @Id
+    @GeneratedValue
     private Long questionId;
     @Column(nullable = false)
     private String questionTitle;
