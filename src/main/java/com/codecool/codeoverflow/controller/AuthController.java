@@ -47,23 +47,15 @@ public class AuthController {
     @PostMapping("/auth/login")
     @ResponseBody
     public ResponseEntity login(@RequestBody StudentCredentialsRegister loginData, HttpServletResponse response) {
-        return studentService.login(loginData,response);
+        return studentService.login(loginData, response);
     }
 
     //@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     @GetMapping("/auth/logout")
     @ResponseBody
     public ResponseEntity logOut(HttpServletResponse response, HttpServletRequest request) {
-        return studentService.logOut(response,request);
+        return studentService.logOut(response, request);
     }
-
-    // Index page is for authentication purpose only at this time
-    @GetMapping("/")
-    @ResponseBody
-    public String test() {
-        return "This page is authorized, you are logged in";
-    }
-
 
 
     @ExceptionHandler(value = {BadCredentialsException.class,
