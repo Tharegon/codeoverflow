@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -90,6 +91,25 @@ public class StudentService {
             return ResponseEntity.ok(model);
         } catch (AuthenticationException e) {
             throw new BadCredentialsException("Invalid e-mail/password supplied");
+        }
+    }
+
+    private void removeTokenFromResponse(HttpServletResponse response) {
+        Cookie tokenCookie = new Cookie("token", null);
+        tokenCookie.setMaxAge(0);
+        tokenCookie.setHttpOnly(true);
+        tokenCookie.setPath("/");
+        response.addCookie(tokenCookie);
+    }
+
+    public ResponseEntity logOut(HttpServletResponse response, HttpServletRequest request) {
+        try {
+            removeTokenFromResponse(response);
+            Map<Object, Object> model = new HashMap<>();
+            model.put("Logout", "Successful");
+            return ResponseEntity.ok(model);
+        } catch (AuthenticationException e) {
+            throw new BadCredentialsException("You have not logged in.");
         }
     }
 }
