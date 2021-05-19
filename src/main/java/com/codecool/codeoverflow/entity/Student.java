@@ -1,9 +1,6 @@
 package com.codecool.codeoverflow.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
+@Builder
 public class Student {
 
     @Id
