@@ -32,7 +32,7 @@ public class AuthController {
     StudentService studentService;
 
 
-    public AuthController(StudentService studentService, AuthenticationManager authenticationManager, JwtTokenServices jwtTokenServices) {
+    public AuthController(StudentService studentService) {
         this.studentService = studentService;
     }
 
