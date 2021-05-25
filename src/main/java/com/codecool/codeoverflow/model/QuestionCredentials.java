@@ -1,5 +1,6 @@
 package com.codecool.codeoverflow.model;
 
+
 import lombok.*;
 
 
@@ -8,8 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class StudentCredentialsRegister {
-    private String userName;
-    private String email;
-    private String password;
+public class QuestionCredentials {
+
+    private String questionTitle;
+    private String questionContent;
 }
