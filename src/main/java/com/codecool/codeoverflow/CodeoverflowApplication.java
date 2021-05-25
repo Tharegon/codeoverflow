@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 public class CodeoverflowApplication {
 
@@ -26,7 +28,11 @@ public class CodeoverflowApplication {
     @Profile("production")
     public CommandLineRunner init() {
         return args -> {
-            Question first = new Question((long) 1,"Why lombok doesnt work?","very good explanation");
+            Question first = Question.builder()
+                    .questionTitle("VERY GOOD question")
+                    .questionContent("very long text and...")
+                    .sendTime(LocalDateTime.now())
+                    .build();
 
             questionRepository.save(first);
 
