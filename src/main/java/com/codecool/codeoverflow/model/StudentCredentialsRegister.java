@@ -2,7 +2,7 @@ package com.codecool.codeoverflow.model;
 
 import lombok.*;
 
-@Data
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
