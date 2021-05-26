@@ -4,6 +4,7 @@ package com.codecool.codeoverflow.service;
 import com.codecool.codeoverflow.entity.Question;
 import com.codecool.codeoverflow.model.QuestionCredentials;
 import com.codecool.codeoverflow.repository.QuestionRepository;
+import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -29,8 +30,8 @@ public class QuestionService {
     }
 
     public ResponseEntity saveQuestion(QuestionCredentials questionCredentials) {
-        if(!questionCredentials.getQuestionTitle().equals("") ||
-                !questionCredentials.getQuestionContent().equals("")) {
+        if(!questionCredentials.getQuestionTitle().isBlank() &&
+                !questionCredentials.getQuestionContent().isBlank()) {
             Question question = Question.builder()
                     .questionTitle(questionCredentials.getQuestionTitle())
                     .questionContent(questionCredentials.getQuestionContent())
@@ -41,7 +42,7 @@ public class QuestionService {
             model.put("Successful question with: ", question.getQuestionTitle());
             return ResponseEntity.ok(model);
         }else{
-            throw new BadCredentialsException("Invalid title/content supplied");
+            throw new IllegalArgumentException("Invalid title/content supplied, cannot be empty!");
         }
     }
 }
