@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,4 +24,5 @@ public class Question {
     private String questionTitle;
     @Column(nullable = false)
     private String questionContent;
+    private LocalDateTime sendTime;
 }
