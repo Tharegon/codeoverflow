@@ -6,6 +6,7 @@ import com.codecool.codeoverflow.model.QuestionCredentials;
 import com.codecool.codeoverflow.repository.QuestionRepository;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class QuestionService {
             model.put("Successful question with: ", question.getQuestionTitle());
             return ResponseEntity.ok(model);
         }else{
-            throw new IllegalArgumentException("Invalid title/content supplied, cannot be empty!");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid title/content supplied, cannot be empty!");
         }
     }
 }
