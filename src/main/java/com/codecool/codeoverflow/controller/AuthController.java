@@ -43,7 +43,8 @@ public class AuthController {
         return studentService.registerStudent(studentCredentialsRegister);
     }
 
-    //@CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    //allowCredentials = "true" were here too, but it doesn't work right now
     @PostMapping("/auth/login")
     @ResponseBody
     public ResponseEntity login(@RequestBody StudentCredentialsRegister loginData, HttpServletResponse response) {
